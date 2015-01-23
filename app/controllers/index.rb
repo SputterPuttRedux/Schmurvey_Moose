@@ -4,7 +4,7 @@ get '/' do
 end
 
 get '/signup' do
-  :signup
+  erb :signup
 end
 
 post '/signup' do
@@ -25,4 +25,6 @@ get '/login' do
 end
 
 get '/signout' do
+  session[:user_id] = nil
+  redirect "/"
 end
