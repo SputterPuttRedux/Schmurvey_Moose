@@ -9,5 +9,22 @@ post "/:id/survey/new" do |id|# User creates a new survey.
 end
 
 get "/:user_id/survey/:survey_id/edit" do |user_id, survey_id|
+  @survey = Survey.find(survey_id)
+  erb :'survey/edit'
+end
 
+post '/:user_id/survey/:survey_id/edit' do |user_id, survey_id|
+  @survey = Survey.find(survey_id)
+  @created_question = Question.create(description: params['question'])
+  @survey.questions << @created_question
+  i = 1
+  4.times do
+    @created_question.answers << Answer.create(description: params["#{i}"])
+    i += 1
+  end
+  erb :'survey/edit'
+end
+
+get '/share/:survey_id' do |survey_id|
+  erb :'survey/share_page'
 end
