@@ -1,4 +1,11 @@
-<div class="container">
-
-
+<div class="welcome">
+  <h1>Welcome to Schmurvey Moose!</h1>
+  <% if user_signed_in? %>
+  <div id="create_survey_box">
+    <a href="/<%= @user.id %>/survey">Create Survey!</a>
+  </div>
+  <% end %>
+  <div><img src="/imgs/walking_moose.gif"/></div>
+  <div id="login_box">login</div>
+  <div id="signup_box">signup</div>
 </div>
