@@ -8,3 +8,11 @@
 th {
   text-align: left;
 }
+li {
+  list-style-type: none;
+  display: inline;
+}
+
+#header {
+  width: 100%;
+}
