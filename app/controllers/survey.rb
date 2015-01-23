@@ -30,4 +30,13 @@ get '/share/:survey_id' do |survey_id|
   erb :'survey/share_page'
 end
 
+get '/survey/:id' do |id|
+  @survey = Survey.find(id)
 
+  # if current_user
+  #   @survey_taker = SurveyTaker.where(survey_id: id, user_id: current_user.id)
+  #   (stat_array = (@survey_taker[0] || @survey.user_id == current_user.id) ? @survey.questions.map { |q| q.find_stat } : nil)
+  # end
+
+  erb :'survey/take_survey', locals: {survey: @survey, stat_array: stat_array, survey_taker: @survey_taker}
+end
