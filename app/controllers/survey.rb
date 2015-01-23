@@ -1,6 +1,6 @@
 get "/:id/survey" do |id|
   @current_user = User.find(id)
-  erb :title_form
+  erb :'survey/title_form'
 end
 
 post "/:id/survey/new" do |id|# User creates a new survey.
