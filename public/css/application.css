@@ -8,3 +8,55 @@
 th {
   text-align: left;
 }
+li {
+  list-style-type: none;
+  display: inline;
+}
+
+
+.welcome {
+  width: 900px;
+  height: 600px;
+  border: 1px solid #5d5972;
+  margin: 40px auto;
+  background-color: #9F97CE;
+  color: #241865;
+}
+
+#login_bar {
+  text-align: right;
+  padding: 10px;
+}
+
+.welcome h1 {
+  text-align: center;
+}
+
+#login_box {
+  display: inline-block;
+  width: 150px;
+  height: 50px;
+  border: 1px solid #5d5972;
+  text-align: center;
+  background-color: #928D12;
+
+}
+
+#signup_box {
+  display: inline-block;
+  width: 150px;
+  height: 50px;
+  border: 1px solid #5d5972;
+  text-align: center;
+  background-color: #928D12;
+}
+
+#create_survey_box {
+  display: inline-block;
+  width: 150px;
+  height: 50px;
+  border: 1px solid #5d5972;
+  text-align: center;
+  background-color: #928D12;
+}
+
