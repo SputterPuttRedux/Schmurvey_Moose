@@ -26,5 +26,8 @@ post '/:user_id/survey/:survey_id/edit' do |user_id, survey_id|
 end
 
 get '/share/:survey_id' do |survey_id|
+  @survey = Survey.find(survey_id)
   erb :'survey/share_page'
 end
+
+
