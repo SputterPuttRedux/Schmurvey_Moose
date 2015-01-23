@@ -38,5 +38,5 @@ get '/survey/:id' do |id|
   #   (stat_array = (@survey_taker[0] || @survey.user_id == current_user.id) ? @survey.questions.map { |q| q.find_stat } : nil)
   # end
 
-  erb :'survey/take_survey', locals: {survey: @survey, stat_array: stat_array, survey_taker: @survey_taker}
+  erb :'survey/take_survey'
 end
