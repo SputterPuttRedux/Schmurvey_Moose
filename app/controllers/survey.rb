@@ -30,13 +30,27 @@ get '/share/:survey_id' do |survey_id|
   erb :'survey/share_page'
 end
 
+#Route sent to share. Will allow you to either take your survey, or view stats
 get '/survey/:id' do |id|
   @survey = Survey.find(id)
+current_user = User.find(1)
+  if current_user
+    (stat_array = (@survey.user_id == current_user.id) ? @survey.questions.map { |q| q.find_stat } : nil)
+  end
 
-  # if current_user
-  #   @survey_taker = SurveyTaker.where(survey_id: id, user_id: current_user.id)
-  #   (stat_array = (@survey_taker[0] || @survey.user_id == current_user.id) ? @survey.questions.map { |q| q.find_stat } : nil)
-  # end
+  erb :'survey/take_survey', locals: {stat_array: stat_array}
+end
 
-  erb :'survey/take_survey'
+get '/survey/:id/submit' do |id|
+  # create selection record
+  params.each do |key, answer_id|
+    next if !(key.match("response"))
+    UserAnswer.create(answer_id: answer_id.to_i)
+    # s.user_id = current_user.id if current_user
+  end
+
+  # get stats
+  @survey = Survey.find(id)
+  stat_array = @survey.questions.map {|q| q.find_stat}
+  erb :'survey/take_survey', locals: {stat_array: stat_array, questions: @survey.questions}, layout: false
 end
