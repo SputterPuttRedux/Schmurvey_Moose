@@ -3,3 +3,12 @@ get '/' do
   erb :index
 end
 
+get '/signup' do
+end
+
+get '/login' do
+  erb :login
+end
+
+get '/signout' do
+end
