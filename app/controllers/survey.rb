@@ -1,5 +1,4 @@
-get "/:id/survey" do |id|
-  @current_user = User.find(id)
+get "/:id/survey" do
   erb :'survey/title_form'
 end
 
@@ -33,7 +32,7 @@ end
 #Route sent to share. Will allow you to either take your survey, or view stats
 get '/survey/:id' do |id|
   @survey = Survey.find(id)
-current_user = User.find(1)
+
   if current_user
     (stat_array = (@survey.user_id == current_user.id) ? @survey.questions.map { |q| q.find_stat } : nil)
   end
@@ -46,11 +45,10 @@ get '/survey/:id/submit' do |id|
   params.each do |key, answer_id|
     next if !(key.match("response"))
     UserAnswer.create(answer_id: answer_id.to_i)
-    # s.user_id = current_user.id if current_user
   end
 
   # get stats
   @survey = Survey.find(id)
   stat_array = @survey.questions.map {|q| q.find_stat}
-  erb :'survey/take_survey', locals: {stat_array: stat_array, questions: @survey.questions}, layout: false
+  erb :'survey/take_survey', locals: {stat_array: stat_array, questions: @survey.questions}
 end
